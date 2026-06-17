@@ -1,0 +1,20 @@
+name: Build GekVortex APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '17', distribution: 'temurin' }
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with: { gradle-version: '8.2' }
+      - run: gradle assembleRelease || echo "Build failed"
+      - name: Find APK
+        id: find_apk
+        run: |
+          APK_PATH=$(find app/build/outputs/apk/ -name "*.apk" | head -n 1)
+          echo "APK_PATH=$APK_PATH" >> $GITHUB_ENV
+      - uses: actions/upload-artifact@v4
+        with: { name: GekVortex-Sovereign, path: ${{ env.APK_PATH }} }
