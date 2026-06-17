@@ -1,0 +1,3 @@
+- keep class com.openkhaos.browser.** { *; }
+- keep class org.mozilla.geckoview.** { *; }
+- keepattributes Signature,InnerClasses,AnnotationDefault
