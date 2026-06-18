@@ -1,4 +1,4 @@
-name = "vortex"
+name = "vortex-portfolio"
 main = ".open-next/worker.js"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
